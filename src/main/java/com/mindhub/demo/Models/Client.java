@@ -1,18 +1,24 @@
 package com.mindhub.demo.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Client {   
 
-    private String firstName, lastName, email;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String firstName, lastName, email;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Account> accounts = new ArrayList<>();
+
 
     public Client() {
     }
@@ -27,27 +33,29 @@ public class Client {
             return firstName;
         }
 
-        public void setFirstName (String firstName){
-            this.firstName = firstName;
-        }
+
 
         public String getLastName () {
             return lastName;
         }
 
-        public void setLastName (String lastName){
-            this.lastName = lastName;
-        }
+
 
         public String getEmail () {
             return email;
         }
 
-        public void setEmail (String email){
-            this.email = email;
+
+
+
+
+
+        public void addAccount(Account account){
+        account.setClient(this);
+        this.accounts.add(account);
         }
 
-        @Override
+    @Override
         public String toString () {
             return "Cliente{" +
                     "firstName='" + firstName + '\'' +
@@ -56,6 +64,11 @@ public class Client {
                     ", id=" + id +
                     '}';
         }
+
+
+    public Long getId() {
+        return null;
     }
+}
 
 
