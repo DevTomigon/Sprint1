@@ -1,4 +1,5 @@
 package com.mindhub.demo.controllers;
+import com.mindhub.demo.Models.Client;
 import com.mindhub.demo.Repositories.ClientRepository;
 
 import com.mindhub.demo.dto.ClientDTO;
@@ -22,13 +23,13 @@ public class ClientController {
     public List<ClientDTO> getAllClient() {
         return clientRepository.findAll()
                 .stream()
-                .map(ClientDTO::new)
+                .map((Client client) -> new ClientDTO(client))
                 .collect(Collectors.toList());
     }
 
     @RequestMapping("/clients/{id}")
     public ClientDTO findClient(@PathVariable Long id) {
-        return clientRepository.findById(id).map(ClientDTO::new).orElse(null);
+        return clientRepository.findById(id).map((Client client) -> new ClientDTO(client)).orElse(null);
     }
 
 }

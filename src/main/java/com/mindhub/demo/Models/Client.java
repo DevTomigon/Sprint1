@@ -3,6 +3,7 @@ package com.mindhub.demo.Models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -50,10 +51,10 @@ public class Client {
 
 
 
-        public void addAccount(Account account){
+    public void addAccount(Account account) {
+        accounts.add(account);
         account.setClient(this);
-        this.accounts.add(account);
-        }
+    }
 
     @Override
         public String toString () {
@@ -65,9 +66,12 @@ public class Client {
                     '}';
         }
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 
     public Long getId() {
-        return null;
+        return id;
     }
 }
 

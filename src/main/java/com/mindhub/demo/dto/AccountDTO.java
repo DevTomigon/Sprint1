@@ -1,5 +1,7 @@
 package com.mindhub.demo.dto;
 
+import com.mindhub.demo.Models.Account;
+
 import java.time.LocalDate;
 
 public class AccountDTO {
@@ -9,7 +11,7 @@ public class AccountDTO {
     private final LocalDate creationDate;
     private final Double balance;
 
-    public AccountDTO(AccountDTO account){
+    public AccountDTO(Account account){
         this.id = account.getId();
         this.number = account.getNumber();
         this.creationDate = account.getCreationDate();

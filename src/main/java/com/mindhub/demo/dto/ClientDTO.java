@@ -1,7 +1,7 @@
 package com.mindhub.demo.dto;
 
 import com.mindhub.demo.Models.Client;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +11,7 @@ public class ClientDTO {
     private final String firstName;
     private final String lastName;
     private final String email;
-    private List<AccountDTO> accounts;
+    private final List<AccountDTO> accounts;
 
     public ClientDTO(Client client) {
         this.id = client.getId();
@@ -19,7 +19,8 @@ public class ClientDTO {
         this.lastName = client.getLastName();
         this.email = client.getEmail();
 
-        this.accounts= accounts.stream()
+
+        this.accounts = client.getAccounts().stream()
                 .map(AccountDTO::new)
                 .collect(Collectors.toList());
     }
